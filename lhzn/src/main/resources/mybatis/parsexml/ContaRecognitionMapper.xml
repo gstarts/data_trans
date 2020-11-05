@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lhzn.soft.project.mapper.ContaRecognitionMapper">
+    
+    <resultMap type="ContaRecognition" id="ContaRecognitionResult">
+        <result property="id"    column="id"    />
+        <result property="sessionId"    column="session_id"    />
+        <result property="contaId"    column="conta_id"    />
+        <result property="contaType"    column="conta_type"    />
+        <result property="contaLock"    column="conta_lock"    />
+        <result property="confidenceRatio"    column="confidence_ratio"    />
+    </resultMap>
+
+    <sql id="selectContaRecognitionVo">
+        select id, session_id, conta_id, conta_type, conta_lock, confidence_ratio from g_conta_recognition
+    </sql>
+
+    <select id="selectContaRecognition" parameterType="String" resultMap="ContaRecognitionResult">
+        <include refid="selectContaRecognitionVo"/>
+        where
+            session_id = #{sessionID}
+    </select>
+    
+    <select id="selectContaRecognitionById" parameterType="Long" resultMap="ContaRecognitionResult">
+        <include refid="selectContaRecognitionVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertContaRecognition" parameterType="ContaRecognition" useGeneratedKeys="true" keyProperty="id">
+        insert into g_conta_recognition
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="sessionId != null  and sessionId != ''">session_id,</if>
+            <if test="contaId != null  and contaId != ''">conta_id,</if>
+            <if test="contaType != null  and contaType != ''">conta_type,</if>
+            <if test="contaLock != null  and contaLock != ''">conta_lock,</if>
+            <if test="confidenceRatio != null  and confidenceRatio != ''">confidence_ratio,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="sessionId != null  and sessionId != ''">#{sessionId},</if>
+            <if test="contaId != null  and contaId != ''">#{contaId},</if>
+            <if test="contaType != null  and contaType != ''">#{contaType},</if>
+            <if test="contaLock != null  and contaLock != ''">#{contaLock},</if>
+            <if test="confidenceRatio != null  and confidenceRatio != ''">#{confidenceRatio},</if>
+         </trim>
+    </insert>
+
+    <update id="updateContaRecognition" parameterType="ContaRecognition">
+        update g_conta_recognition
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="sessionId != null  and sessionId != ''">session_id = #{sessionId},</if>
+            <if test="contaId != null  and contaId != ''">conta_id = #{contaId},</if>
+            <if test="contaType != null  and contaType != ''">conta_type = #{contaType},</if>
+            <if test="contaLock != null  and contaLock != ''">conta_lock = #{contaLock},</if>
+            <if test="confidenceRatio != null  and confidenceRatio != ''">confidence_ratio = #{confidenceRatio},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteContaRecognitionById" parameterType="Long">
+        delete from g_conta_recognition where id = #{id}
+    </delete>
+
+    <delete id="deleteContaRecognitionByIds" parameterType="String">
+        delete from g_conta_recognition where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+    
+</mapper>

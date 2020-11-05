@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lhzn.soft.project.mapper.VeLicenseRecognitionMapper">
+    
+    <resultMap type="VeLicenseRecognition" id="VeLicenseRecognitionResult">
+        <result property="id"    column="id"    />
+        <result property="sessionId"    column="session_id"    />
+        <result property="domesticLicenseNo"    column="domestic_license_no"    />
+        <result property="domesticLicenseColor"    column="domestic_license_color"    />
+        <result property="foreignLicenseNo"    column="foreign_license_no"    />
+        <result property="foreignLicenseColor"    column="foreign_license_color"    />
+        <result property="confidenceRatio"    column="confidence_ratio"    />
+    </resultMap>
+
+    <sql id="selectVeLicenseRecognitionVo">
+        select id, session_id, domestic_license_no, domestic_license_color, foreign_license_no, foreign_license_color, confidence_ratio from g_ve_license_recognition
+    </sql>
+
+    <select id="selectVeLicenseRecognition" parameterType="String" resultMap="VeLicenseRecognitionResult">
+        <include refid="selectVeLicenseRecognitionVo"/>
+        where
+            session_id = #{sessionId}
+    </select>
+    
+    <select id="selectVeLicenseRecognitionById" parameterType="Long" resultMap="VeLicenseRecognitionResult">
+        <include refid="selectVeLicenseRecognitionVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertVeLicenseRecognition" parameterType="VeLicenseRecognition" useGeneratedKeys="true" keyProperty="id">
+        insert into g_ve_license_recognition
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="sessionId != null  and sessionId != ''">session_id,</if>
+            <if test="domesticLicenseNo != null  and domesticLicenseNo != ''">domestic_license_no,</if>
+            <if test="domesticLicenseColor != null  and domesticLicenseColor != ''">domestic_license_color,</if>
+            <if test="foreignLicenseNo != null  and foreignLicenseNo != ''">foreign_license_no,</if>
+            <if test="foreignLicenseColor != null  and foreignLicenseColor != ''">foreign_license_color,</if>
+            <if test="confidenceRatio != null  and confidenceRatio != ''">confidence_ratio,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="sessionId != null  and sessionId != ''">#{sessionId},</if>
+            <if test="domesticLicenseNo != null  and domesticLicenseNo != ''">#{domesticLicenseNo},</if>
+            <if test="domesticLicenseColor != null  and domesticLicenseColor != ''">#{domesticLicenseColor},</if>
+            <if test="foreignLicenseNo != null  and foreignLicenseNo != ''">#{foreignLicenseNo},</if>
+            <if test="foreignLicenseColor != null  and foreignLicenseColor != ''">#{foreignLicenseColor},</if>
+            <if test="confidenceRatio != null  and confidenceRatio != ''">#{confidenceRatio},</if>
+         </trim>
+    </insert>
+
+    <update id="updateVeLicenseRecognition" parameterType="VeLicenseRecognition">
+        update g_ve_license_recognition
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="sessionId != null  and sessionId != ''">session_id = #{sessionId},</if>
+            <if test="domesticLicenseNo != null  and domesticLicenseNo != ''">domestic_license_no = #{domesticLicenseNo},</if>
+            <if test="domesticLicenseColor != null  and domesticLicenseColor != ''">domestic_license_color = #{domesticLicenseColor},</if>
+            <if test="foreignLicenseNo != null  and foreignLicenseNo != ''">foreign_license_no = #{foreignLicenseNo},</if>
+            <if test="foreignLicenseColor != null  and foreignLicenseColor != ''">foreign_license_color = #{foreignLicenseColor},</if>
+            <if test="confidenceRatio != null  and confidenceRatio != ''">confidence_ratio = #{confidenceRatio},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteVeLicenseRecognitionById" parameterType="Long">
+        delete from g_ve_license_recognition where id = #{id}
+    </delete>
+
+    <delete id="deleteVeLicenseRecognitionByIds" parameterType="String">
+        delete from g_ve_license_recognition where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+    
+</mapper>

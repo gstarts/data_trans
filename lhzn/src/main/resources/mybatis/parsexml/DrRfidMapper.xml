@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lhzn.soft.project.mapper.DrRfidMapper">
+    
+    <resultMap type="DrRfid" id="DrRfidResult">
+        <result property="id"    column="id"    />
+        <result property="sessionId"    column="session_id"    />
+        <result property="rfidId"    column="rfid_id"    />
+        <result property="drName"    column="dr_name"    />
+        <result property="drCustomsNo"    column="dr_customs_no"    />
+        <result property="drCompany"    column="dr_company"    />
+        <result property="drPerformance"    column="dr_performance"    />
+    </resultMap>
+
+    <sql id="selectDrRfidVo">
+        select id, session_id, rfid_id, dr_name, dr_customs_no, dr_company, dr_performance from g_dr_rfid
+    </sql>
+
+    <select id="selectDrRfid" parameterType="String" resultMap="DrRfidResult">
+        <include refid="selectDrRfidVo"/>
+        where
+            session_id = #{sessionId}
+
+    </select>
+    
+    <select id="selectDrRfidById" parameterType="Long" resultMap="DrRfidResult">
+        <include refid="selectDrRfidVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertDrRfid" parameterType="DrRfid" useGeneratedKeys="true" keyProperty="id">
+        insert into g_dr_rfid
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="sessionId != null  and sessionId != ''">session_id,</if>
+            <if test="rfidId != null  and rfidId != ''">rfid_id,</if>
+            <if test="drName != null  and drName != ''">dr_name,</if>
+            <if test="drCustomsNo != null  and drCustomsNo != ''">dr_customs_no,</if>
+            <if test="drCompany != null  and drCompany != ''">dr_company,</if>
+            <if test="drPerformance != null  and drPerformance != ''">dr_performance,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="sessionId != null  and sessionId != ''">#{sessionId},</if>
+            <if test="rfidId != null  and rfidId != ''">#{rfidId},</if>
+            <if test="drName != null  and drName != ''">#{drName},</if>
+            <if test="drCustomsNo != null  and drCustomsNo != ''">#{drCustomsNo},</if>
+            <if test="drCompany != null  and drCompany != ''">#{drCompany},</if>
+            <if test="drPerformance != null  and drPerformance != ''">#{drPerformance},</if>
+         </trim>
+    </insert>
+
+    <update id="updateDrRfid" parameterType="DrRfid">
+        update g_dr_rfid
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="sessionId != null  and sessionId != ''">session_id = #{sessionId},</if>
+            <if test="rfidId != null  and rfidId != ''">rfid_id = #{rfidId},</if>
+            <if test="drName != null  and drName != ''">dr_name = #{drName},</if>
+            <if test="drCustomsNo != null  and drCustomsNo != ''">dr_customs_no = #{drCustomsNo},</if>
+            <if test="drCompany != null  and drCompany != ''">dr_company = #{drCompany},</if>
+            <if test="drPerformance != null  and drPerformance != ''">dr_performance = #{drPerformance},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteDrRfidById" parameterType="Long">
+        delete from g_dr_rfid where id = #{id}
+    </delete>
+
+    <delete id="deleteDrRfidByIds" parameterType="String">
+        delete from g_dr_rfid where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+    
+</mapper>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lhzn.soft.project.mapper.PhotoMapper">
+    
+    <resultMap type="Photo" id="PhotoResult">
+        <result property="id"    column="id"    />
+        <result property="sessionId"    column="session_id"    />
+        <result property="photoGuid"    column="photo_guid"    />
+        <result property="photoPerspective"    column="photo_perspective"    />
+    </resultMap>
+
+    <sql id="selectPhotoVo">
+        select id, session_id, photo_guid, photo_perspective from g_photo
+    </sql>
+
+    <select id="selectPhoto" parameterType="String" resultMap="PhotoResult">
+        <include refid="selectPhotoVo"/>
+        where
+             session_id = #{sessionId}
+    </select>
+    
+    <select id="selectPhotoById" parameterType="Long" resultMap="PhotoResult">
+        <include refid="selectPhotoVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertPhoto" parameterType="Photo" useGeneratedKeys="true" keyProperty="id">
+        insert into g_photo
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="sessionId != null  and sessionId != ''">session_id,</if>
+            <if test="photoGuid != null  and photoGuid != ''">photo_guid,</if>
+            <if test="photoPerspective != null  and photoPerspective != ''">photo_perspective,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="sessionId != null  and sessionId != ''">#{sessionId},</if>
+            <if test="photoGuid != null  and photoGuid != ''">#{photoGuid},</if>
+            <if test="photoPerspective != null  and photoPerspective != ''">#{photoPerspective},</if>
+         </trim>
+    </insert>
+
+    <update id="updatePhoto" parameterType="Photo">
+        update g_photo
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="sessionId != null  and sessionId != ''">session_id = #{sessionId},</if>
+            <if test="photoGuid != null  and photoGuid != ''">photo_guid = #{photoGuid},</if>
+            <if test="photoPerspective != null  and photoPerspective != ''">photo_perspective = #{photoPerspective},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deletePhotoById" parameterType="Long">
+        delete from g_photo where id = #{id}
+    </delete>
+
+    <delete id="deletePhotoByIds" parameterType="String">
+        delete from g_photo where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+    
+</mapper>

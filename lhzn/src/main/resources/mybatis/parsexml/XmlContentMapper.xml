@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lhzn.soft.project.mapper.XmlContentMapper">
+
+    <resultMap type="xmlContent" id="xmlContentResult">
+        <result property="id" column="id"/>
+        <result property="sessionId" column="session_id"/>
+        <result property="xmlName" column="xml_name"/>
+        <result property="xmlContent" column="xml_content"/>
+        <result property="xmlResponse" column="xml_response"/>
+        <result property="xmlTime" column="xml_time"/>
+    </resultMap>
+
+    <insert id="insertXmlContent" useGeneratedKeys="true" parameterType="XmlContent">
+        insert into g_xml
+
+        <trim suffixOverrides="," suffix=")" prefix="(">
+
+            <if test="sessionId != null">session_id,</if>
+
+            <if test="xmlName != null">xml_name,</if>
+
+            <if test="xmlResponse != null">xml_response,</if>
+
+            <if test="xmlContent != null">xml_content,</if>
+
+            <if test="xmlTime != null">xml_time,</if>
+
+        </trim>
+
+        <trim suffixOverrides="," suffix=")" prefix="values (">
+
+            <if test="sessionId != null ">#{sessionId},</if>
+
+            <if test="xmlName != null">#{xmlName},</if>
+
+            <if test="xmlResponse != null">#{xmlResponse},</if>
+
+            <if test="xmlContent != null">#{xmlContent},</if>
+
+            <if test="xmlTime != null">#{xmlTime},</if>
+
+        </trim>
+    </insert>
+    <update id="updateXmlContent">
+
+    </update>
+
+    <select id="selectXmlContentById" resultMap="xmlContentResult">
+
+    </select>
+    <select id="selectXmlContentBysessionId" resultMap="xmlContentResult">
+
+    </select>
+
+
+</mapper>

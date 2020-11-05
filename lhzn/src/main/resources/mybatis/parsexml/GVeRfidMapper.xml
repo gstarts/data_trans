@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lhzn.soft.project.mapper.GVeRfidMapper">
+    
+    <resultMap type="VeRfid" id="GVeRfidResult">
+        <result property="id"    column="id"    />
+        <result property="sessionId"    column="session_id"    />
+        <result property="rfidId"    column="rfid_id"    />
+        <result property="veLicenseNo"    column="ve_license_no"    />
+        <result property="veCustomsNo"    column="ve_customs_no"    />
+        <result property="veWt"    column="ve_wt"    />
+        <result property="veCompany"    column="ve_company"    />
+        <result property="vePerformance"    column="ve_performance"    />
+        <result property="veLicenseNo2"    column="ve_license_no2"    />
+        <result property="trailerId"    column="trailer_id"    />
+        <result property="weightDiff"    column="weight_diff"    />
+        <result property="channelWeight"    column="channel_weight"    />
+        <result property="grossWeight"    column="gross_weight"    />
+        <result property="vehicleWeight"    column="vehicle_weight"    />
+        <result property="drCustomsNo"    column="dr_customs_no"    />
+        <result property="drName"    column="dr_name"    />
+    </resultMap>
+
+    <sql id="selectGVeRfidVo">
+        select id, session_id, rfid_id, ve_license_no, ve_customs_no, ve_wt, ve_company, ve_performance, ve_license_no2, trailer_id, weight_diff, channel_weight, gross_weight, vehicle_weight, dr_customs_no, dr_name from g_ve_rfid
+    </sql>
+
+    <select id="selectGVeRfid" parameterType="String" resultMap="GVeRfidResult">
+        <include refid="selectGVeRfidVo"/>
+        where
+            session_id = #{sessionId}
+    </select>
+    
+    <select id="selectGVeRfidById" parameterType="Long" resultMap="GVeRfidResult">
+        <include refid="selectGVeRfidVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertGVeRfid" parameterType="VeRfid" useGeneratedKeys="true" keyProperty="id">
+        insert into g_ve_rfid
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="sessionId != null  and sessionId != ''">session_id,</if>
+            <if test="rfidId != null  and rfidId != ''">rfid_id,</if>
+            <if test="veLicenseNo != null  and veLicenseNo != ''">ve_license_no,</if>
+            <if test="veCustomsNo != null  and veCustomsNo != ''">ve_customs_no,</if>
+            <if test="veWt != null  and veWt != ''">ve_wt,</if>
+            <if test="veCompany != null  and veCompany != ''">ve_company,</if>
+            <if test="vePerformance != null  and vePerformance != ''">ve_performance,</if>
+            <if test="veLicenseNo2 != null  and veLicenseNo2 != ''">ve_license_no2,</if>
+            <if test="trailerId != null  and trailerId != ''">trailer_id,</if>
+            <if test="weightDiff != null  and weightDiff != ''">weight_diff,</if>
+            <if test="channelWeight != null  and channelWeight != ''">channel_weight,</if>
+            <if test="grossWeight != null  and grossWeight != ''">gross_weight,</if>
+            <if test="vehicleWeight != null  and vehicleWeight != ''">vehicle_weight,</if>
+            <if test="drCustomsNo != null  and drCustomsNo != ''">dr_customs_no,</if>
+            <if test="drName != null  and drName != ''">dr_name,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="sessionId != null  and sessionId != ''">#{sessionId},</if>
+            <if test="rfidId != null  and rfidId != ''">#{rfidId},</if>
+            <if test="veLicenseNo != null  and veLicenseNo != ''">#{veLicenseNo},</if>
+            <if test="veCustomsNo != null  and veCustomsNo != ''">#{veCustomsNo},</if>
+            <if test="veWt != null  and veWt != ''">#{veWt},</if>
+            <if test="veCompany != null  and veCompany != ''">#{veCompany},</if>
+            <if test="vePerformance != null  and vePerformance != ''">#{vePerformance},</if>
+            <if test="veLicenseNo2 != null  and veLicenseNo2 != ''">#{veLicenseNo2},</if>
+            <if test="trailerId != null  and trailerId != ''">#{trailerId},</if>
+            <if test="weightDiff != null  and weightDiff != ''">#{weightDiff},</if>
+            <if test="channelWeight != null  and channelWeight != ''">#{channelWeight},</if>
+            <if test="grossWeight != null  and grossWeight != ''">#{grossWeight},</if>
+            <if test="vehicleWeight != null  and vehicleWeight != ''">#{vehicleWeight},</if>
+            <if test="drCustomsNo != null  and drCustomsNo != ''">#{drCustomsNo},</if>
+            <if test="drName != null  and drName != ''">#{drName},</if>
+         </trim>
+    </insert>
+
+    <update id="updateGVeRfid" parameterType="VeRfid">
+        update g_ve_rfid
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="sessionId != null  and sessionId != ''">session_id = #{sessionId},</if>
+            <if test="rfidId != null  and rfidId != ''">rfid_id = #{rfidId},</if>
+            <if test="veLicenseNo != null  and veLicenseNo != ''">ve_license_no = #{veLicenseNo},</if>
+            <if test="veCustomsNo != null  and veCustomsNo != ''">ve_customs_no = #{veCustomsNo},</if>
+            <if test="veWt != null  and veWt != ''">ve_wt = #{veWt},</if>
+            <if test="veCompany != null  and veCompany != ''">ve_company = #{veCompany},</if>
+            <if test="vePerformance != null  and vePerformance != ''">ve_performance = #{vePerformance},</if>
+            <if test="veLicenseNo2 != null  and veLicenseNo2 != ''">ve_license_no2 = #{veLicenseNo2},</if>
+            <if test="trailerId != null  and trailerId != ''">trailer_id = #{trailerId},</if>
+            <if test="weightDiff != null  and weightDiff != ''">weight_diff = #{weightDiff},</if>
+            <if test="channelWeight != null  and channelWeight != ''">channel_weight = #{channelWeight},</if>
+            <if test="grossWeight != null  and grossWeight != ''">gross_weight = #{grossWeight},</if>
+            <if test="vehicleWeight != null  and vehicleWeight != ''">vehicle_weight = #{vehicleWeight},</if>
+            <if test="drCustomsNo != null  and drCustomsNo != ''">dr_customs_no = #{drCustomsNo},</if>
+            <if test="drName != null  and drName != ''">dr_name = #{drName},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteGVeRfidById" parameterType="Long">
+        delete from g_ve_rfid where id = #{id}
+    </delete>
+
+    <delete id="deleteGVeRfidByIds" parameterType="String">
+        delete from g_ve_rfid where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+    
+</mapper>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lhzn.soft.project.mapper.ExtendMapper">
+    
+    <resultMap type="Extend" id="ExtendResult">
+        <result property="id"    column="id"    />
+        <result property="sessionId"    column="session_id"    />
+        <result property="name"    column="name"    />
+        <result property="value"    column="value"    />
+    </resultMap>
+
+    <sql id="selectExtendVo">
+        select id, session_id, name, value from g_extend
+    </sql>
+
+    <select id="selectExtend" parameterType="String" resultMap="ExtendResult">
+        <include refid="selectExtendVo"/>
+        where
+             session_id = #{sessionId}
+
+    </select>
+    
+    <select id="selectExtendById" parameterType="Long" resultMap="ExtendResult">
+        <include refid="selectExtendVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertExtend" parameterType="Extend" useGeneratedKeys="true" keyProperty="id">
+        insert into g_extend
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="sessionId != null  and sessionId != ''">session_id,</if>
+            <if test="name != null  and name != ''">`name`,</if>
+            <if test="value != null  and value != ''">`value`,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="sessionId != null  and sessionId != ''">#{sessionId},</if>
+            <if test="name != null  and name != ''">#{name},</if>
+            <if test="value != null  and value != ''">#{value},</if>
+         </trim>
+    </insert>
+
+    <update id="updateExtend" parameterType="Extend">
+        update g_extend
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="sessionId != null  and sessionId != ''">session_id = #{sessionId},</if>
+            <if test="name != null  and name != ''">name = #{name},</if>
+            <if test="value != null  and value != ''">value = #{value},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteExtendById" parameterType="Long">
+        delete from g_extend where id = #{id}
+    </delete>
+
+    <delete id="deleteExtendByIds" parameterType="String">
+        delete from g_extend where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+    
+</mapper>

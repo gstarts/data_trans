@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lhzn.soft.project.mapper.IcInfoMapper">
+    
+    <resultMap type="IcInfo" id="IcInfoResult">
+        <result property="id"    column="id"    />
+        <result property="sessionId"    column="session_id"    />
+        <result property="icId"    column="ic_id"    />
+        <result property="icNo"    column="ic_no"    />
+        <result property="icType"    column="ic_type"    />
+        <result property="icExtendedContent"    column="ic_extended_content"    />
+    </resultMap>
+
+    <sql id="selectIcInfoVo">
+        select id, session_id, ic_id, ic_no, ic_type, ic_extended_content from g_ic_info
+    </sql>
+
+    <select id="selectIcInfo" parameterType="String" resultMap="IcInfoResult">
+        <include refid="selectIcInfoVo"/>
+        where
+           session_id = #{sessionId}
+
+    </select>
+    
+    <select id="selectIcInfoById" parameterType="Long" resultMap="IcInfoResult">
+        <include refid="selectIcInfoVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertIcInfo" parameterType="IcInfo" useGeneratedKeys="true" keyProperty="id">
+        insert into g_ic_info
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="sessionId != null  and sessionId != ''">session_id,</if>
+            <if test="icId != null  and icId != ''">ic_id,</if>
+            <if test="icNo != null  and icNo != ''">ic_no,</if>
+            <if test="icType != null  and icType != ''">ic_type,</if>
+            <if test="icExtendedContent != null  and icExtendedContent != ''">ic_extended_content,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="sessionId != null  and sessionId != ''">#{sessionId},</if>
+            <if test="icId != null  and icId != ''">#{icId},</if>
+            <if test="icNo != null  and icNo != ''">#{icNo},</if>
+            <if test="icType != null  and icType != ''">#{icType},</if>
+            <if test="icExtendedContent != null  and icExtendedContent != ''">#{icExtendedContent},</if>
+         </trim>
+    </insert>
+
+    <update id="updateIcInfo" parameterType="IcInfo">
+        update g_ic_info
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="sessionId != null  and sessionId != ''">session_id = #{sessionId},</if>
+            <if test="icId != null  and icId != ''">ic_id = #{icId},</if>
+            <if test="icNo != null  and icNo != ''">ic_no = #{icNo},</if>
+            <if test="icType != null  and icType != ''">ic_type = #{icType},</if>
+            <if test="icExtendedContent != null  and icExtendedContent != ''">ic_extended_content = #{icExtendedContent},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteIcInfoById" parameterType="Long">
+        delete from g_ic_info where id = #{id}
+    </delete>
+
+    <delete id="deleteIcInfoByIds" parameterType="String">
+        delete from g_ic_info where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+    
+</mapper>

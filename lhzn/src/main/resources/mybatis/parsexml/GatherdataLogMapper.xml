@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lhzn.soft.project.mapper.GatherdataLogMapper">
+    
+    <resultMap type="GatherdataLog" id="GatherdataLogResult">
+        <result property="sessionId"    column="session_id"    />
+        <result property="areaId"    column="area_id"    />
+        <result property="chnlNo"    column="chnl_no"    />
+        <result property="iEFlag"    column="i_e_flag"    />
+        <result property="getherMode"    column="gether_mode"    />
+        <result property="drCustomsNo"    column="dr_customs_no"    />
+        <result property="veCustomsNo"    column="ve_customs_no"    />
+        <result property="veLicenseNo"    column="ve_license_no"    />
+        <result property="contaId"    column="conta_id"    />
+        <result property="esealId"    column="eseal_id"    />
+        <result property="grossWt"    column="gross_wt"    />
+        <result property="operatorId"    column="operator_id"    />
+        <result property="operateTime"    column="operate_time"    />
+        <result property="rellistType"    column="rellist_type"    />
+        <result property="rellistIdType"    column="rellist_id_type"    />
+        <result property="rellistId"    column="rellist_id"    />
+        <result property="feedbackTime"    column="feedback_time"    />
+        <result property="checkResult"    column="check_result"    />
+        <result property="instruction"    column="instruction"    />
+        <result property="photo"    column="photo"    />
+        <result property="procErrorCode"    column="proc_error_code"    />
+        <result property="procErrorDescription"    column="proc_error_description"    />
+        <result property="techErrorCode"    column="tech_error_code"    />
+        <result property="techErrorDescription"    column="tech_error_description"    />
+        <result property="sealId"    column="seal_id"    />
+        <result property="packNo"    column="pack_no"    />
+        <result property="declPack"    column="decl_pack"    />
+        <result property="declGoodsWeight"    column="decl_goods_weight"    />
+        <result property="opHint"    column="op_hint"    />
+        <result property="ledHint"    column="led_hint"    />
+        <result property="extendedContent"    column="extended_content"    />
+        <result property="x81Command"    column="81_command"    />
+        <result property="x82Command"    column="82_command"    />
+        <result property="inoutTime"    column="inout_time"    />
+        <result property="gatheralldataFlg"    column="gatheralldata_flg"    />
+    </resultMap>
+
+    <sql id="selectGatherdataLogVo">
+        select session_id, area_id, chnl_no, i_e_flag, gether_mode, dr_customs_no, ve_customs_no, ve_license_no, conta_id, eseal_id, gross_wt, operator_id, operate_time, rellist_type, rellist_id_type, rellist_id, feedback_time, check_result, instruction, photo, proc_error_code, proc_error_description, tech_error_code, tech_error_description, seal_id, pack_no, decl_pack, decl_goods_weight, op_hint, led_hint, extended_content, 81_command, 82_command, inout_time, gatheralldata_flg from g_gatherdata_log
+    </sql>
+
+    <select id="selectGatherdataLog" parameterType="String" resultMap="GatherdataLogResult">
+        <include refid="selectGatherdataLogVo"/>
+        where
+        session_id = #{sessionId}
+    </select>
+    
+    <select id="selectGatherdataLogById" parameterType="String" resultMap="GatherdataLogResult">
+        <include refid="selectGatherdataLogVo"/>
+        where session_id = #{sessionId}
+    </select>
+        
+    <insert id="insertGatherdataLog" parameterType="GatherdataLog">
+        insert into g_gatherdata_log
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="sessionId != null  and sessionId != ''">session_id,</if>
+            <if test="areaId != null  and areaId != ''">area_id,</if>
+            <if test="chnlNo != null  and chnlNo != ''">chnl_no,</if>
+            <if test="iEFlag != null  and iEFlag != ''">i_e_flag,</if>
+            <if test="getherMode != null  and getherMode != ''">gether_mode,</if>
+            <if test="drCustomsNo != null  and drCustomsNo != ''">dr_customs_no,</if>
+            <if test="veCustomsNo != null  and veCustomsNo != ''">ve_customs_no,</if>
+            <if test="veLicenseNo != null  and veLicenseNo != ''">ve_license_no,</if>
+            <if test="contaId != null  and contaId != ''">conta_id,</if>
+            <if test="esealId != null  and esealId != ''">eseal_id,</if>
+            <if test="grossWt != null  and grossWt != ''">gross_wt,</if>
+            <if test="operatorId != null  and operatorId != ''">operator_id,</if>
+            <if test="operateTime != null  and operateTime != ''">operate_time,</if>
+            <if test="rellistType != null  and rellistType != ''">rellist_type,</if>
+            <if test="rellistIdType != null  and rellistIdType != ''">rellist_id_type,</if>
+            <if test="rellistId != null  and rellistId != ''">rellist_id,</if>
+            <if test="feedbackTime != null  and feedbackTime != ''">feedback_time,</if>
+            <if test="checkResult != null  and checkResult != ''">check_result,</if>
+            <if test="instruction != null  and instruction != ''">instruction,</if>
+            <if test="photo != null  and photo != ''">photo,</if>
+            <if test="procErrorCode != null  and procErrorCode != ''">proc_error_code,</if>
+            <if test="procErrorDescription != null  and procErrorDescription != ''">proc_error_description,</if>
+            <if test="techErrorCode != null  and techErrorCode != ''">tech_error_code,</if>
+            <if test="techErrorDescription != null  and techErrorDescription != ''">tech_error_description,</if>
+            <if test="sealId != null  and sealId != ''">seal_id,</if>
+            <if test="packNo != null  and packNo != ''">pack_no,</if>
+            <if test="declPack != null  and declPack != ''">decl_pack,</if>
+            <if test="declGoodsWeight != null  and declGoodsWeight != ''">decl_goods_weight,</if>
+            <if test="opHint != null  and opHint != ''">op_hint,</if>
+            <if test="ledHint != null  and ledHint != ''">led_hint,</if>
+            <if test="extendedContent != null  and extendedContent != ''">extended_content,</if>
+            <if test="x81Command != null  and x81Command != ''">81_command,</if>
+            <if test="x82Command != null  and x82Command != ''">82_command,</if>
+            <if test="inoutTime != null ">inout_time,</if>
+            <if test="gatheralldataFlg != null  and gatheralldataFlg != ''">gatheralldata_flg,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="sessionId != null  and sessionId != ''">#{sessionId},</if>
+            <if test="areaId != null  and areaId != ''">#{areaId},</if>
+            <if test="chnlNo != null  and chnlNo != ''">#{chnlNo},</if>
+            <if test="iEFlag != null  and iEFlag != ''">#{iEFlag},</if>
+            <if test="getherMode != null  and getherMode != ''">#{getherMode},</if>
+            <if test="drCustomsNo != null  and drCustomsNo != ''">#{drCustomsNo},</if>
+            <if test="veCustomsNo != null  and veCustomsNo != ''">#{veCustomsNo},</if>
+            <if test="veLicenseNo != null  and veLicenseNo != ''">#{veLicenseNo},</if>
+            <if test="contaId != null  and contaId != ''">#{contaId},</if>
+            <if test="esealId != null  and esealId != ''">#{esealId},</if>
+            <if test="grossWt != null  and grossWt != ''">#{grossWt},</if>
+            <if test="operatorId != null  and operatorId != ''">#{operatorId},</if>
+            <if test="operateTime != null  and operateTime != ''">#{operateTime},</if>
+            <if test="rellistType != null  and rellistType != ''">#{rellistType},</if>
+            <if test="rellistIdType != null  and rellistIdType != ''">#{rellistIdType},</if>
+            <if test="rellistId != null  and rellistId != ''">#{rellistId},</if>
+            <if test="feedbackTime != null  and feedbackTime != ''">#{feedbackTime},</if>
+            <if test="checkResult != null  and checkResult != ''">#{checkResult},</if>
+            <if test="instruction != null  and instruction != ''">#{instruction},</if>
+            <if test="photo != null  and photo != ''">#{photo},</if>
+            <if test="procErrorCode != null  and procErrorCode != ''">#{procErrorCode},</if>
+            <if test="procErrorDescription != null  and procErrorDescription != ''">#{procErrorDescription},</if>
+            <if test="techErrorCode != null  and techErrorCode != ''">#{techErrorCode},</if>
+            <if test="techErrorDescription != null  and techErrorDescription != ''">#{techErrorDescription},</if>
+            <if test="sealId != null  and sealId != ''">#{sealId},</if>
+            <if test="packNo != null  and packNo != ''">#{packNo},</if>
+            <if test="declPack != null  and declPack != ''">#{declPack},</if>
+            <if test="declGoodsWeight != null  and declGoodsWeight != ''">#{declGoodsWeight},</if>
+            <if test="opHint != null  and opHint != ''">#{opHint},</if>
+            <if test="ledHint != null  and ledHint != ''">#{ledHint},</if>
+            <if test="extendedContent != null  and extendedContent != ''">#{extendedContent},</if>
+            <if test="x81Command != null  and x81Command != ''">#{x81Command},</if>
+            <if test="x82Command != null  and x82Command != ''">#{x82Command},</if>
+            <if test="inoutTime != null ">#{inoutTime},</if>
+            <if test="gatheralldataFlg != null  and gatheralldataFlg != ''">#{gatheralldataFlg},</if>
+         </trim>
+    </insert>
+
+    <update id="updateGatherdataLog" parameterType="GatherdataLog">
+        update g_gatherdata_log
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="areaId != null  and areaId != ''">area_id = #{areaId},</if>
+            <if test="chnlNo != null  and chnlNo != ''">chnl_no = #{chnlNo},</if>
+            <if test="iEFlag != null  and iEFlag != ''">i_e_flag = #{iEFlag},</if>
+            <if test="getherMode != null  and getherMode != ''">gether_mode = #{getherMode},</if>
+            <if test="drCustomsNo != null  and drCustomsNo != ''">dr_customs_no = #{drCustomsNo},</if>
+            <if test="veCustomsNo != null  and veCustomsNo != ''">ve_customs_no = #{veCustomsNo},</if>
+            <if test="veLicenseNo != null  and veLicenseNo != ''">ve_license_no = #{veLicenseNo},</if>
+            <if test="contaId != null  and contaId != ''">conta_id = #{contaId},</if>
+            <if test="esealId != null  and esealId != ''">eseal_id = #{esealId},</if>
+            <if test="grossWt != null  and grossWt != ''">gross_wt = #{grossWt},</if>
+            <if test="operatorId != null  and operatorId != ''">operator_id = #{operatorId},</if>
+            <if test="operateTime != null  and operateTime != ''">operate_time = #{operateTime},</if>
+            <if test="rellistType != null  and rellistType != ''">rellist_type = #{rellistType},</if>
+            <if test="rellistIdType != null  and rellistIdType != ''">rellist_id_type = #{rellistIdType},</if>
+            <if test="rellistId != null  and rellistId != ''">rellist_id = #{rellistId},</if>
+            <if test="feedbackTime != null  and feedbackTime != ''">feedback_time = #{feedbackTime},</if>
+            <if test="checkResult != null  and checkResult != ''">check_result = #{checkResult},</if>
+            <if test="instruction != null  and instruction != ''">instruction = #{instruction},</if>
+            <if test="photo != null  and photo != ''">photo = #{photo},</if>
+            <if test="procErrorCode != null  and procErrorCode != ''">proc_error_code = #{procErrorCode},</if>
+            <if test="procErrorDescription != null  and procErrorDescription != ''">proc_error_description = #{procErrorDescription},</if>
+            <if test="techErrorCode != null  and techErrorCode != ''">tech_error_code = #{techErrorCode},</if>
+            <if test="techErrorDescription != null  and techErrorDescription != ''">tech_error_description = #{techErrorDescription},</if>
+            <if test="sealId != null  and sealId != ''">seal_id = #{sealId},</if>
+            <if test="packNo != null  and packNo != ''">pack_no = #{packNo},</if>
+            <if test="declPack != null  and declPack != ''">decl_pack = #{declPack},</if>
+            <if test="declGoodsWeight != null  and declGoodsWeight != ''">decl_goods_weight = #{declGoodsWeight},</if>
+            <if test="opHint != null  and opHint != ''">op_hint = #{opHint},</if>
+            <if test="ledHint != null  and ledHint != ''">led_hint = #{ledHint},</if>
+            <if test="extendedContent != null  and extendedContent != ''">extended_content = #{extendedContent},</if>
+            <if test="x81Command != null  and x81Command != ''">81_command = #{x81Command},</if>
+            <if test="x82Command != null  and x82Command != ''">82_command = #{x82Command},</if>
+            <if test="inoutTime != null ">inout_time = #{inoutTime},</if>
+            <if test="gatheralldataFlg != null  and gatheralldataFlg != ''">gatheralldata_flg = #{gatheralldataFlg},</if>
+        </trim>
+        where session_id = #{sessionId}
+    </update>
+
+    <delete id="deleteGatherdataLogById" parameterType="String">
+        delete from g_gatherdata_log where session_id = #{sessionId}
+    </delete>
+
+    <delete id="deleteGatherdataLogByIds" parameterType="String">
+        delete from g_gatherdata_log where session_id in 
+        <foreach item="sessionId" collection="array" open="(" separator="," close=")">
+            #{sessionId}
+        </foreach>
+    </delete>
+    
+</mapper>
