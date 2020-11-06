@@ -14,7 +14,7 @@ import java.util.Map;
 public class XmlHDServiceImpl implements XmlHdService {
 
     @Override
-    public String create81Xml(Map map) {
+    public String createHdXml(Map map) {
         GatherdataLog gatherdataLog = (GatherdataLog) map.get("gl");
         IcInfo icInfo = (IcInfo) map.get("ic");
         VeRfid veRfid = (VeRfid) map.get("ve");
@@ -55,7 +55,7 @@ public class XmlHDServiceImpl implements XmlHdService {
                 .addText(StringUtils.replaceNullString(stringBuilder(contaId)));
 
         // 自定义xml样式
-        StringUtils.formatter();
+//        StringUtils.formatter();
 
         // 输出xml文件
         String StringXml = doc.asXML();
