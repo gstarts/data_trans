@@ -5,57 +5,57 @@ import com.lhzn.soft.project.domain.GatherdataLog;
 import java.util.List;
 
 /**
- * qweMapper接口
+ * 过卡记录Mapper接口
  *
  * @author lanzhenyuan
  * @date 2020-06-18
  */
 public interface GatherdataLogMapper {
     /**
-     * 查询qwe
+     * 查询过卡记录
      *
-     * @param sessionId qweID
-     * @return qwe
+     * @param sessionId 过卡记录ID
+     * @return 过卡记录
      */
-    public GatherdataLog selectGatherdataLogById ( String sessionId );
+     GatherdataLog selectGatherdataLogById ( String sessionId );
 
     /**
-     * 查询qwe列表
+     * 查询过卡记录列表
      *
-     * @param sessionId qwe
-     * @return qwe集合
+     * @param sessionId 过卡记录
+     * @return 过卡记录集合
      */
-    public GatherdataLog selectGatherdataLog ( String sessionId );
+     GatherdataLog selectGatherdataLog ( String sessionId );
 
     /**
-     * 新增qwe
+     * 新增过卡记录
      *
-     * @param gatherdataLog qwe
+     * @param gatherdataLog 过卡记录
      * @return 结果
      */
-    public int insertGatherdataLog ( GatherdataLog gatherdataLog );
+     int insertGatherdataLog ( GatherdataLog gatherdataLog );
 
     /**
-     * 修改qwe
+     * 修改过卡记录
      *
-     * @param gatherdataLog qwe
+     * @param gatherdataLog 过卡记录
      * @return 结果
      */
-    public int updateGatherdataLog ( GatherdataLog gatherdataLog );
+     int updateGatherdataLog ( GatherdataLog gatherdataLog );
 
     /**
-     * 删除qwe
+     * 删除过卡记录
      *
-     * @param sessionId qweID
+     * @param sessionId 过卡记录ID
      * @return 结果
      */
-    public int deleteGatherdataLogById ( String sessionId );
+     int deleteGatherdataLogById ( String sessionId );
 
     /**
-     * 批量删除qwe
+     * 批量删除过卡记录
      *
      * @param sessionIds 需要删除的数据ID
      * @return 结果
      */
-    public int deleteGatherdataLogByIds ( String[] sessionIds );
+     int deleteGatherdataLogByIds ( String[] sessionIds );
 }

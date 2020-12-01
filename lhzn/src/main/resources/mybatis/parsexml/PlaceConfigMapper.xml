@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lhzn.soft.project.mapper.PlaceConfigMapper">
+    
+    <resultMap type="PlaceConfig" id="PlaceConfigResult">
+        <result property="id"    column="id"    />
+        <result property="supvLoctCode"    column="supv_loct_code"    />
+        <result property="stationName"    column="station_name"    />
+        <result property="expand"    column="expand"    />
+        <result property="expand2"    column="expand2"    />
+        <result property="ipAddress"    column="ip_address"    />
+        <result property="revision"    column="revision"    />
+        <result property="createBy"    column="create_by"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="updateBy"    column="update_by"    />
+        <result property="updateTime"    column="update_time"    />
+    </resultMap>
+
+    <sql id="selectPlaceConfigVo">
+        select id, supv_loct_code, station_name, expand, expand2, ip_address, revision, create_by, create_time, update_by, update_time from place_config
+    </sql>
+
+    <select id="selectPlaceConfigList" parameterType="PlaceConfig" resultMap="PlaceConfigResult">
+        <include refid="selectPlaceConfigVo"/>
+        <where>  
+            <if test="supvLoctCode != null  and supvLoctCode != ''"> and supv_loct_code = #{supvLoctCode}</if>
+            <if test="stationName != null  and stationName != ''"> and station_name like concat('%', #{stationName}, '%')</if>
+            <if test="expand != null  and expand != ''"> and expand = #{expand}</if>
+            <if test="expand2 != null  and expand2 != ''"> and expand2 = #{expand2}</if>
+            <if test="ipAddress != null  and ipAddress != ''"> and ip_address = #{ipAddress}</if>
+            <if test="revision != null "> and revision = #{revision}</if>
+        </where>
+    </select>
+    
+    <select id="selectPlaceConfigById" parameterType="Long" resultMap="PlaceConfigResult">
+        <include refid="selectPlaceConfigVo"/>
+        where id = #{id}
+    </select>
+    <select id="getIpAddersByPlaceId" parameterType="String" resultType="java.lang.String">
+         select  ip_address  from place_config where  supv_loct_code=#{id}
+
+    </select>
+
+    <insert id="insertPlaceConfig" parameterType="PlaceConfig" useGeneratedKeys="true" keyProperty="id">
+        insert into place_config
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="supvLoctCode != null">supv_loct_code,</if>
+            <if test="stationName != null">station_name,</if>
+            <if test="expand != null">expand,</if>
+            <if test="expand2 != null">expand2,</if>
+            <if test="ipAddress != null">ip_address,</if>
+            <if test="revision != null">revision,</if>
+            <if test="createBy != null">create_by,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="updateBy != null">update_by,</if>
+            <if test="updateTime != null">update_time,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="supvLoctCode != null">#{supvLoctCode},</if>
+            <if test="stationName != null">#{stationName},</if>
+            <if test="expand != null">#{expand},</if>
+            <if test="expand2 != null">#{expand2},</if>
+            <if test="ipAddress != null">#{ipAddress},</if>
+            <if test="revision != null">#{revision},</if>
+            <if test="createBy != null">#{createBy},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="updateBy != null">#{updateBy},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+         </trim>
+    </insert>
+
+    <update id="updatePlaceConfig" parameterType="PlaceConfig">
+        update place_config
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="supvLoctCode != null">supv_loct_code = #{supvLoctCode},</if>
+            <if test="stationName != null">station_name = #{stationName},</if>
+            <if test="expand != null">expand = #{expand},</if>
+            <if test="expand2 != null">expand2 = #{expand2},</if>
+            <if test="ipAddress != null">ip_address = #{ipAddress},</if>
+            <if test="revision != null">revision = #{revision},</if>
+            <if test="createBy != null">create_by = #{createBy},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="updateBy != null">update_by = #{updateBy},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deletePlaceConfigById" parameterType="Long">
+        delete from place_config where id = #{id}
+    </delete>
+
+    <delete id="deletePlaceConfigByIds" parameterType="String">
+        delete from place_config where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+    
+</mapper>

@@ -48,8 +48,8 @@
 
     </update>
 
-    <select id="selectXmlContentById" resultMap="xmlContentResult">
-
+    <select id="selectXmlContentById" parameterType="Long" resultMap="xmlContentResult">
+         select  session_id, xml_name,xml_content,xml_response from g_xml where  id=#{id}
     </select>
     <select id="selectXmlContentBysessionId" resultMap="xmlContentResult">
 

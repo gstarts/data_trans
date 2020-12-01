@@ -12,7 +12,7 @@ public interface XmlContentMapper {
      * @param id 报文主键
      * @return  报文信息
      */
-    public XmlContent selectXmlContentById (Long id);
+     XmlContent selectXmlContentById (Long id);
 
     /**
      * 查询交互的xml报文列表
@@ -20,7 +20,7 @@ public interface XmlContentMapper {
      * @param id sessionId
      * @return 报文列表集合
      */
-    public List<XmlContent> selectXmlContentBysessionId (String id);
+     List<XmlContent> selectXmlContentBysessionId (String id);
 
     /**
      * 新增交互报文
@@ -28,7 +28,7 @@ public interface XmlContentMapper {
      * @param xml 报文信息
      * @return 结果
      */
-    public int insertXmlContent (XmlContent xml);
+     int insertXmlContent (XmlContent xml);
 
     /**
      * 修改交互报文信息
@@ -36,6 +36,6 @@ public interface XmlContentMapper {
      * @param xml 报文信息
      * @return 结果
      */
-    public int updateXmlContent (XmlContent xml);
+     int updateXmlContent (XmlContent xml);
 
 }

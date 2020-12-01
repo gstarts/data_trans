@@ -8,7 +8,7 @@ spring:
     druid:
       # 主库数据源
       master:
-        url: jdbc:mysql://localhost:3306/ws-db?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8
+        url: jdbc:mysql://39.105.36.197:3306/wsdb?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8
         username: gatedb
         password: gatedb@LH2020
       # 从库数据源
@@ -82,3 +82,6 @@ webservice:
     name: http://services/lhznsoft.com
     wsdl:  8182/Service/parseXml?wsdl
     method: parseXml
+
+
+
