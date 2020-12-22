@@ -18,15 +18,15 @@ public interface PhotoMapper
      * @param id 车辆通关图片信息ID
      * @return 车辆通关图片信息
      */
-    public Photo selectPhotoById (Long id);
+     Photo selectPhotoById (Long id);
 
     /**
      * 查询车辆通关图片信息列表
      * 
-     * @param sessionID 车辆通关图片信息
+     * @param sessionId 车辆通关图片信息
      * @return 车辆通关图片信息集合
      */
-    public Photo selectPhoto (String sessionID);
+     Photo selectPhoto (String sessionId);
 
     /**
      * 新增车辆通关图片信息
@@ -34,7 +34,7 @@ public interface PhotoMapper
      * @param photo 车辆通关图片信息
      * @return 结果
      */
-    public int insertPhoto (Photo photo);
+     int insertPhoto (Photo photo);
 
     /**
      * 修改车辆通关图片信息
@@ -42,7 +42,7 @@ public interface PhotoMapper
      * @param photo 车辆通关图片信息
      * @return 结果
      */
-    public int updatePhoto (Photo photo);
+     int updatePhoto (Photo photo);
 
     /**
      * 删除车辆通关图片信息
@@ -50,7 +50,7 @@ public interface PhotoMapper
      * @param id 车辆通关图片信息ID
      * @return 结果
      */
-    public int deletePhotoById (Long id);
+     int deletePhotoById (Long id);
 
     /**
      * 批量删除车辆通关图片信息
@@ -58,5 +58,5 @@ public interface PhotoMapper
      * @param ids 需要删除的数据ID
      * @return 结果
      */
-    public int deletePhotoByIds (Long[] ids);
+     int deletePhotoByIds (Long[] ids);
 }

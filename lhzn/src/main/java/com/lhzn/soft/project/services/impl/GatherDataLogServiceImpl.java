@@ -6,6 +6,10 @@ import com.lhzn.soft.project.services.GatherDataLogService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+/**
+ *
+ * @author qishuai
+ */
 @Service
 public class GatherDataLogServiceImpl implements GatherDataLogService {
     @Resource

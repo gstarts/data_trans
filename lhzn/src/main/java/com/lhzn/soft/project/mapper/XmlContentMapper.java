@@ -4,6 +4,10 @@ import com.lhzn.soft.project.domain.XmlContent;
 
 import java.util.List;
 
+/**
+ * 报文接口
+ * @author gstar
+ */
 public interface XmlContentMapper {
 
     /**

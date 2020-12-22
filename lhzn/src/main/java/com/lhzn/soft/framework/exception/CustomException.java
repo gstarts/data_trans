@@ -1,8 +1,18 @@
 package com.lhzn.soft.framework.exception;
 
+/**
+ * 自定义异常
+ * @author qishuai
+ */
 public class CustomException extends RuntimeException {
-    private String retCd ;  //异常对应的返回码
-    private String msgDes;  //异常对应的描述信息
+    /**
+     *     异常对应的返回码
+     */
+    private String retCd ;
+    /**
+     * 异常对应的描述信息
+     */
+    private String msgDes;
 
     public CustomException(String msgDes) {
         super(msgDes);

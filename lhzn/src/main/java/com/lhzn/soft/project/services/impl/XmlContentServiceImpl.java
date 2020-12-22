@@ -6,6 +6,10 @@ import com.lhzn.soft.project.services.XmlContentService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+/**
+ * 报文内容
+ * @author gstar
+ */
 @Service
 public class XmlContentServiceImpl  implements XmlContentService {
 

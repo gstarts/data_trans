@@ -4,6 +4,10 @@ import lombok.Data;
 
 import java.io.Serializable;
 
+/**
+ * 报文
+ * @author gstar
+ */
 @Data
 public class XmlContent implements Serializable {
     private static final long serialVersionUID = 1L;

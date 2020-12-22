@@ -2,6 +2,7 @@ package com.lhzn.soft.framework.aspectj.lang;
 
 /**
  * 通用校验返回结果类
+ * @author qishuai
  */
 public class ValidateResult {
     private boolean isValid = true;

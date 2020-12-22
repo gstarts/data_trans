@@ -1,6 +1,5 @@
 package com.lhzn.soft.framework.config;
 
-import com.lhzn.soft.utils.Threads;
 import org.apache.commons.lang3.concurrent.BasicThreadFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -18,16 +17,18 @@ import java.util.concurrent.ThreadPoolExecutor;
 @Configuration
 public class ThreadPoolConfig
 {
-    // 核心线程池大小
+    /**
+     核心线程池大小
+     */
     private int corePoolSize = 50;
 
-    // 最大可创建的线程数
+    /** 最大可创建的线程数 */
     private int maxPoolSize = 200;
 
-    // 队列最大长度
+    /** 队列最大长度 */
     private int queueCapacity = 1000;
 
-    // 线程池维护线程所允许的空闲时间
+    /** 线程池维护线程所允许的空闲时间 */
     private int keepAliveSeconds = 300;
 
     @Bean(name = "threadPoolTaskExecutor")
@@ -56,7 +57,6 @@ public class ThreadPoolConfig
             protected void afterExecute(Runnable r, Throwable t)
             {
                 super.afterExecute(r, t);
-                Threads.printException(r, t);
             }
         };
     }

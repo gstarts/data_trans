@@ -7,6 +7,10 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 非空校验
+ * @author gstar
+ */
 public class MyAnnotation {
     public static <T> List<ValidateResult> validate (T t) {
         List<ValidateResult> validateResults = new ArrayList<> ();

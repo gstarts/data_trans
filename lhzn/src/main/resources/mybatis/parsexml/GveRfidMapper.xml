@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.lhzn.soft.project.mapper.GVeRfidMapper">
+<mapper namespace="com.lhzn.soft.project.mapper.GveRfidMapper">
     
     <resultMap type="VeRfid" id="GVeRfidResult">
         <result property="id"    column="id"    />
@@ -27,18 +27,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         select id, session_id, rfid_id, ve_license_no, ve_customs_no, ve_wt, ve_company, ve_performance, ve_license_no2, trailer_id, weight_diff, channel_weight, gross_weight, vehicle_weight, dr_customs_no, dr_name from g_ve_rfid
     </sql>
 
-    <select id="selectGVeRfid" parameterType="String" resultMap="GVeRfidResult">
+    <select id="selectGveRfid" parameterType="String" resultMap="GVeRfidResult">
         <include refid="selectGVeRfidVo"/>
         where
             session_id = #{sessionId}
     </select>
     
-    <select id="selectGVeRfidById" parameterType="Long" resultMap="GVeRfidResult">
+    <select id="selectGveRfidById" parameterType="Long" resultMap="GVeRfidResult">
         <include refid="selectGVeRfidVo"/>
         where id = #{id}
     </select>
         
-    <insert id="insertGVeRfid" parameterType="VeRfid" useGeneratedKeys="true" keyProperty="id">
+    <insert id="insertGveRfid" parameterType="VeRfid" useGeneratedKeys="true" keyProperty="id">
         insert into g_ve_rfid
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="sessionId != null  and sessionId != ''">session_id,</if>
@@ -76,7 +76,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
          </trim>
     </insert>
 
-    <update id="updateGVeRfid" parameterType="VeRfid">
+    <update id="updateGveRfid" parameterType="VeRfid">
         update g_ve_rfid
         <trim prefix="SET" suffixOverrides=",">
             <if test="sessionId != null  and sessionId != ''">session_id = #{sessionId},</if>
@@ -98,11 +98,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         where id = #{id}
     </update>
 
-    <delete id="deleteGVeRfidById" parameterType="Long">
+    <delete id="deleteGveRfidById" parameterType="Long">
         delete from g_ve_rfid where id = #{id}
     </delete>
 
-    <delete id="deleteGVeRfidByIds" parameterType="String">
+    <delete id="deleteGveRfidByIds" parameterType="String">
         delete from g_ve_rfid where id in 
         <foreach item="id" collection="array" open="(" separator="," close=")">
             #{id}

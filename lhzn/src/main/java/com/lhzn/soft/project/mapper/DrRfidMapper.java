@@ -23,7 +23,7 @@ public interface DrRfidMapper
     /**
      * 查询车辆通关司机卡信息列表
      * 
-     * @param drRfid 车辆通关司机卡信息
+     * @param sessionId sessionId
      * @return 车辆通关司机卡信息集合
      */
     public DrRfid selectDrRfid (String sessionId);

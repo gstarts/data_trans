@@ -6,6 +6,7 @@ import java.io.Serializable;
 
 /**
  * 返回信息结果类
+ * @author qishuai
  */
 @Data
 public class ReleaseResult implements Serializable {

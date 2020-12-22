@@ -13,6 +13,10 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 
+/**
+ * 重发
+ * @author gstar
+ */
 @RestController
 @RequestMapping("/resend/82xml")
 public class ResendController {
@@ -38,11 +42,11 @@ public class ResendController {
         // 过卡记录对象(场所唯一编码)
         GatherdataLog gatherdataLog = gatherDataLogService.selectGatherdataLogById(xmlContent.getSessionId());
         // 获取网络地址
-        String IP = placeConfigService.getIpAdders(gatherdataLog.getAreaId());
-        if(StringUtils.isEmpty(IP)){
+        String ip = placeConfigService.getIpAdders(gatherdataLog.getAreaId());
+        if(StringUtils.isEmpty(ip)){
             return "404";
         }
-        String wsdl = IP + ctWsdl;
+        String wsdl = ip + ctWsdl;
         String response = forwardService.callCollectServices(xmlContent.getXmlContent(), "xml82", wsdl, ctNamespace, ctMethodName);
         if(StringUtils.isEmpty(response)){
             return "404";

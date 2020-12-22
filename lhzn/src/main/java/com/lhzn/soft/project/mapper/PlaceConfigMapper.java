@@ -60,5 +60,10 @@ public interface PlaceConfigMapper
      */
      int deletePlaceConfigByIds(Long[] ids);
 
+    /**
+     * 获取ip地址
+     * @param id 场所id
+     * @return 结果
+     */
     String getIpAddersByPlaceId(String id);
 }

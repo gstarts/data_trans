@@ -37,7 +37,7 @@ public class BusinessServiceImpl implements BusinessService {
     @Resource
     private XmlCollectService xmlCollectService;
     @Resource
-    private XmlZSService xmlzsService;
+    private XmlZsService xmlzsService;
     @Resource
     private GatherdataLogMapper glMapper;
     @Resource
@@ -55,7 +55,7 @@ public class BusinessServiceImpl implements BusinessService {
     @Resource
     private VeLicenseRecognitionMapper veLicenseRecognitionMapper;
     @Resource
-    private GVeRfidMapper gVeRfidMapper;
+    private GveRfidMapper gVeRfidMapper;
     @Resource
     private ForwardService forwardService;
     @Resource
@@ -90,6 +90,8 @@ public class BusinessServiceImpl implements BusinessService {
      * 采集端82报文
      */
     private static final String CT_XML_NAME = "4";
+     /** 错误代码 */
+    private static final String ERR_CODE = "404";
 
     @Async(value = "threadPoolTaskExecutor")
     @Override
@@ -120,7 +122,7 @@ public class BusinessServiceImpl implements BusinessService {
             String hintInfo = "";
 
             String jsonStr = forwardService.callServices(request, zsWsdl, zsNamespace, zsMethodName);
-            if ("404".equals(jsonStr)) {
+            if (ERR_CODE.equals(jsonStr)) {
                 /*总署交互异常*/
                 saveGl.setTechErrorCode("Z404");
                 saveGl.setTechErrorDescription("调用总署服务超时");
@@ -257,7 +259,7 @@ public class BusinessServiceImpl implements BusinessService {
                 } else if (entrty.getKey().contains("ve")) {
                     VeRfid veRfid = (VeRfid) entrty.getValue();
                     veRfid.setSessionId(sessionId);
-                    row = gVeRfidMapper.insertGVeRfid(veRfid);
+                    row = gVeRfidMapper.insertGveRfid(veRfid);
                 }
             }
         } catch (Exception e) {
@@ -308,7 +310,7 @@ public class BusinessServiceImpl implements BusinessService {
         map.put("fi", formInfo);
         GatherdataLog gatherdataLog = glMapper.selectGatherdataLog(sessionId);
         map.put("gl", gatherdataLog);
-        VeRfid veRfid = gVeRfidMapper.selectGVeRfid(sessionId);
+        VeRfid veRfid = gVeRfidMapper.selectGveRfid(sessionId);
         map.put("ve", veRfid);
         IcInfo icInfo = icInfoMapper.selectIcInfo(sessionId);
         map.put("ic", icInfo);
@@ -329,7 +331,7 @@ public class BusinessServiceImpl implements BusinessService {
         GatherdataLog gl82 = new GatherdataLog();
         gl82.setSessionId(sessionId);
         String resJson = forwardService.callCollectServices(xml82, "xml82", wsdl, ctNamespace, ctMethodName);
-        if ("404".equals(resJson)) {
+        if (ERR_CODE.equals(resJson)) {
             gl82.setTechErrorCode("C404");
             gl82.setTechErrorDescription("采集端服务调用超时");
             resJson = "无法将放行结果返回给客户系统";

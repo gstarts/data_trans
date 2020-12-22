@@ -18,15 +18,15 @@ public interface FormInfoMapper
      * @param id 车辆通关时单证号信息ID
      * @return 车辆通关时单证号信息
      */
-    public FormInfo selectFormInfoById (Long id);
+     FormInfo selectFormInfoById (Long id);
 
     /**
      * 查询车辆通关时单证号信息列表
      * 
-     * @param formInfo 车辆通关时单证号信息
+     * @param sessionId 车辆通关时单证号信息
      * @return 车辆通关时单证号信息集合
      */
-    public FormInfo selectFormInfo (String sessionId);
+     FormInfo selectFormInfo (String sessionId);
 
     /**
      * 新增车辆通关时单证号信息
@@ -34,7 +34,7 @@ public interface FormInfoMapper
      * @param formInfo 车辆通关时单证号信息
      * @return 结果
      */
-    public int insertFormInfo (FormInfo formInfo);
+     int insertFormInfo (FormInfo formInfo);
 
     /**
      * 修改车辆通关时单证号信息
@@ -42,7 +42,7 @@ public interface FormInfoMapper
      * @param formInfo 车辆通关时单证号信息
      * @return 结果
      */
-    public int updateFormInfo (FormInfo formInfo);
+     int updateFormInfo (FormInfo formInfo);
 
     /**
      * 删除车辆通关时单证号信息
@@ -50,7 +50,7 @@ public interface FormInfoMapper
      * @param id 车辆通关时单证号信息ID
      * @return 结果
      */
-    public int deleteFormInfoById (Long id);
+     int deleteFormInfoById (Long id);
 
     /**
      * 批量删除车辆通关时单证号信息
@@ -58,5 +58,5 @@ public interface FormInfoMapper
      * @param ids 需要删除的数据ID
      * @return 结果
      */
-    public int deleteFormInfoByIds (Long[] ids);
+     int deleteFormInfoByIds (Long[] ids);
 }

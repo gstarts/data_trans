@@ -5,6 +5,9 @@ import com.lhzn.soft.project.services.PlaceConfigService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+/**
+ * @author gstar
+ */
 @Service
 public class PlaceConfigServiceImpl implements PlaceConfigService {
 

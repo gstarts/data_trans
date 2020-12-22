@@ -3,7 +3,6 @@ package com.lhzn.soft.utils;
 
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
-import org.dom4j.io.OutputFormat;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.XML;
@@ -39,19 +38,6 @@ public class XmlUtil {
         JSONObject js = XML.toJSONObject (str1);
         System.out.println ("得到的json" + js.toString ());
         return js.toString ();
-    }
-
-    public static void formatter () {
-        OutputFormat format = OutputFormat.createPrettyPrint ();
-        format.setEncoding ("GB2312");
-        format.setIndentSize (2);
-        // 一个结点为一行
-        format.setNewlines (true);
-        // 去重空格
-        format.setTrimText (true);
-        format.setPadText (true);
-        // 放置xml文件中第二行为空白行
-        format.setNewLineAfterDeclaration (false);
     }
 
 }

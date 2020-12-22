@@ -10,8 +10,12 @@ import org.springframework.stereotype.Service;
 
 import java.util.Map;
 
+/**
+ * 华东业务实现
+ * @author qishuai
+ */
 @Service
-public class XmlHDServiceImpl implements XmlHdService {
+public class XmlHdServiceImpl implements XmlHdService {
 
     @Override
     public String createHdXml(Map map) {
@@ -54,21 +58,17 @@ public class XmlHDServiceImpl implements XmlHdService {
         oneChildElement.addElement("ESEAL_ID")
                 .addText(StringUtils.replaceNullString(stringBuilder(contaId)));
 
-        // 自定义xml样式
-//        StringUtils.formatter();
-
         // 输出xml文件
-        String StringXml = doc.asXML();
-
+        String stringXml = doc.asXML();
         System.out.println("dom4j CreateDom4j success!");
-        return StringXml;
+        return stringXml;
     }
 
     public static String stringBuilder(String contaId) {
         String str = StringUtils.replaceNullString(contaId);
         StringBuilder stringBuilder = new StringBuilder();
         String[] idArry = str.trim().split(",");
-        if (!contaId.equals("") && null != contaId) {
+        if (!"".equals(contaId) && null != contaId) {
             for (String nid : idArry) {
                 stringBuilder.append(nid);
                 stringBuilder.append(",");

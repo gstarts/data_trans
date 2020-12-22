@@ -11,7 +11,7 @@ import java.util.List;
  * @author songqingchuan
  * @date 2020-06-22
  */
-public interface GVeRfidMapper 
+public interface GveRfidMapper
 {
     /**
      * 查询车辆通关时电子车牌信息
@@ -19,7 +19,7 @@ public interface GVeRfidMapper
      * @param id 车辆通关时电子车牌信息ID
      * @return 车辆通关时电子车牌信息
      */
-    public VeRfid selectGVeRfidById(Long id);
+     VeRfid selectGveRfidById(Long id);
 
     /**
      * 查询车辆通关时电子车牌信息列表
@@ -27,7 +27,7 @@ public interface GVeRfidMapper
      * @param sessionId 车辆通关时电子车牌信息
      * @return 车辆通关时电子车牌信息集合
      */
-    public VeRfid selectGVeRfid(String sessionId);
+     VeRfid selectGveRfid(String sessionId);
 
     /**
      * 新增车辆通关时电子车牌信息
@@ -35,7 +35,7 @@ public interface GVeRfidMapper
      * @param gVeRfid 车辆通关时电子车牌信息
      * @return 结果
      */
-    public int insertGVeRfid(VeRfid gVeRfid);
+     int insertGveRfid(VeRfid gVeRfid);
 
     /**
      * 修改车辆通关时电子车牌信息
@@ -43,7 +43,7 @@ public interface GVeRfidMapper
      * @param gVeRfid 车辆通关时电子车牌信息
      * @return 结果
      */
-    public int updateGVeRfid(VeRfid gVeRfid);
+     int updateGveRfid(VeRfid gVeRfid);
 
     /**
      * 删除车辆通关时电子车牌信息
@@ -51,7 +51,7 @@ public interface GVeRfidMapper
      * @param id 车辆通关时电子车牌信息ID
      * @return 结果
      */
-    public int deleteGVeRfidById(Long id);
+     int deleteGveRfidById(Long id);
 
     /**
      * 批量删除车辆通关时电子车牌信息
@@ -59,5 +59,5 @@ public interface GVeRfidMapper
      * @param ids 需要删除的数据ID
      * @return 结果
      */
-    public int deleteGVeRfidByIds(Long[] ids);
+     int deleteGveRfidByIds(Long[] ids);
 }

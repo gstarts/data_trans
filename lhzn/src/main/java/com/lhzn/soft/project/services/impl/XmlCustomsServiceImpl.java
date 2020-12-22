@@ -4,7 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.lhzn.soft.project.domain.GatherdataLog;
 import com.lhzn.soft.project.domain.IcInfo;
 import com.lhzn.soft.project.domain.SendJson;
-import com.lhzn.soft.project.services.XmlZSService;
+import com.lhzn.soft.project.services.XmlZsService;
 import com.lhzn.soft.utils.StringUtils;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +16,7 @@ import java.util.Map;
  * @author qishuai
  */
 @Service
-public class XmlCustomsServiceImpl implements XmlZSService {
+public class XmlCustomsServiceImpl implements XmlZsService {
 
     @Override
     public String createZsJson ( Map map ) {

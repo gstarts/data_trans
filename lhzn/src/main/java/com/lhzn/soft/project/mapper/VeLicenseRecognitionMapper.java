@@ -23,10 +23,10 @@ public interface VeLicenseRecognitionMapper
     /**
      * 查询qwe列表
      * 
-     * @param sessionID qwe
+     * @param sessionId qwe
      * @return qwe集合
      */
-    public VeLicenseRecognition selectVeLicenseRecognition(String sessionID);
+    public VeLicenseRecognition selectVeLicenseRecognition(String sessionId);
 
     /**
      * 新增qwe

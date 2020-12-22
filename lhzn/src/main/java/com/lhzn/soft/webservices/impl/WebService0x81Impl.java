@@ -84,7 +84,7 @@ public class WebService0x81Impl implements WebServices0x81 {
         XmlContent xmlContent = businessHandleService.genXml (data, map, COLL_XML_NAME);
         xmlContent.setXmlResponse (buffer.toString ());
         businessHandleService.saveXml (xmlContent);
-        //  将 对象转为json 串
+        // 将对象转为json 串
         String jsonString = JSON.toJSONString (buffer);
         System.out.println (jsonString);
         return jsonString  ;

@@ -9,6 +9,10 @@ import org.apache.cxf.jaxws.support.JaxWsEndpointImplFactory;
 import java.io.File;
 import java.util.List;
 
+/**
+ * 调用webservice
+ * @author qishuai
+ */
 public class JaxWsDynamicClientFactory extends DynamicClientFactory {
     protected JaxWsDynamicClientFactory(Bus bus) {
         super(bus);
@@ -19,6 +23,7 @@ public class JaxWsDynamicClientFactory extends DynamicClientFactory {
         return JaxWsEndpointImplFactory.getSingleton();
     }
 
+    @Override
     protected boolean allowWrapperOps() {
         return true;
     }
