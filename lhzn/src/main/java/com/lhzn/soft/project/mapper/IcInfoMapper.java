@@ -18,7 +18,7 @@ public interface IcInfoMapper
      * @param id 车辆通关信息中ic卡信息ID
      * @return 车辆通关信息中ic卡信息
      */
-    public IcInfo selectIcInfoById (Long id);
+     IcInfo selectIcInfoById (Long id);
 
     /**
      * 查询车辆通关信息中ic卡信息列表
@@ -26,7 +26,7 @@ public interface IcInfoMapper
      * @param sessionId 车辆通关信息中ic卡信息
      * @return 车辆通关信息中ic卡信息集合
      */
-    public IcInfo selectIcInfo (String sessionId);
+     IcInfo selectIcInfo (String sessionId);
 
     /**
      * 新增车辆通关信息中ic卡信息
@@ -34,7 +34,7 @@ public interface IcInfoMapper
      * @param icInfo 车辆通关信息中ic卡信息
      * @return 结果
      */
-    public int insertIcInfo (IcInfo icInfo);
+     int insertIcInfo (IcInfo icInfo);
 
     /**
      * 修改车辆通关信息中ic卡信息
@@ -42,7 +42,7 @@ public interface IcInfoMapper
      * @param icInfo 车辆通关信息中ic卡信息
      * @return 结果
      */
-    public int updateIcInfo (IcInfo icInfo);
+     int updateIcInfo (IcInfo icInfo);
 
     /**
      * 删除车辆通关信息中ic卡信息
@@ -50,7 +50,7 @@ public interface IcInfoMapper
      * @param id 车辆通关信息中ic卡信息ID
      * @return 结果
      */
-    public int deleteIcInfoById (Long id);
+     int deleteIcInfoById (Long id);
 
     /**
      * 批量删除车辆通关信息中ic卡信息
@@ -58,5 +58,5 @@ public interface IcInfoMapper
      * @param ids 需要删除的数据ID
      * @return 结果
      */
-    public int deleteIcInfoByIds (Long[] ids);
+     int deleteIcInfoByIds (Long[] ids);
 }

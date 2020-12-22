@@ -18,7 +18,7 @@ public interface VeLicenseRecognitionMapper
      * @param id qweID
      * @return qwe
      */
-    public VeLicenseRecognition selectVeLicenseRecognitionById (Long id);
+     VeLicenseRecognition selectVeLicenseRecognitionById (Long id);
 
     /**
      * 查询qwe列表
@@ -26,7 +26,7 @@ public interface VeLicenseRecognitionMapper
      * @param sessionId qwe
      * @return qwe集合
      */
-    public VeLicenseRecognition selectVeLicenseRecognition(String sessionId);
+     VeLicenseRecognition selectVeLicenseRecognition(String sessionId);
 
     /**
      * 新增qwe
@@ -34,7 +34,7 @@ public interface VeLicenseRecognitionMapper
      * @param veLicenseRecognition qwe
      * @return 结果
      */
-    public int insertVeLicenseRecognition (VeLicenseRecognition veLicenseRecognition);
+     int insertVeLicenseRecognition (VeLicenseRecognition veLicenseRecognition);
 
     /**
      * 修改qwe
@@ -42,7 +42,7 @@ public interface VeLicenseRecognitionMapper
      * @param veLicenseRecognition qwe
      * @return 结果
      */
-    public int updateVeLicenseRecognition (VeLicenseRecognition veLicenseRecognition);
+     int updateVeLicenseRecognition (VeLicenseRecognition veLicenseRecognition);
 
     /**
      * 删除qwe
@@ -50,7 +50,7 @@ public interface VeLicenseRecognitionMapper
      * @param id qweID
      * @return 结果
      */
-    public int deleteVeLicenseRecognitionById (Long id);
+     int deleteVeLicenseRecognitionById (Long id);
 
     /**
      * 批量删除qwe
@@ -58,5 +58,5 @@ public interface VeLicenseRecognitionMapper
      * @param ids 需要删除的数据ID
      * @return 结果
      */
-    public int deleteVeLicenseRecognitionByIds (Long[] ids);
+     int deleteVeLicenseRecognitionByIds (Long[] ids);
 }
