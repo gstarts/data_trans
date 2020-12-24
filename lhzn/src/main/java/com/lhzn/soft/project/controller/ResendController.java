@@ -1,7 +1,6 @@
 package com.lhzn.soft.project.controller;
 
 import com.lhzn.soft.project.domain.GatherdataLog;
-import com.lhzn.soft.project.domain.PlaceConfig;
 import com.lhzn.soft.project.domain.XmlContent;
 import com.lhzn.soft.project.services.ForwardService;
 import com.lhzn.soft.project.services.GatherDataLogService;
@@ -9,7 +8,10 @@ import com.lhzn.soft.project.services.PlaceConfigService;
 import com.lhzn.soft.project.services.XmlContentService;
 import com.lhzn.soft.utils.StringUtils;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 
