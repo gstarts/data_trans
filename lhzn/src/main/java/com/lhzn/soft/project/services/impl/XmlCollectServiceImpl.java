@@ -25,9 +25,9 @@ import java.util.Map;
  * @author gstarqs
  */
 @Service
-public class XmlCollectServiceImpl<T> implements XmlCollectService<Object> {
+public class XmlCollectServiceImpl implements XmlCollectService {
     @Override
-    public Map<String, Object> xmlResolve(Document document) throws Exception {
+    public Map<String, ?> xmlResolve(Document document) throws Exception {
         GatherdataLog gl = new GatherdataLog();
         Map<String, Object> rMap = new HashMap<>(9);
         for (Element element : (List<Element>) document.getRootElement().elements()) {

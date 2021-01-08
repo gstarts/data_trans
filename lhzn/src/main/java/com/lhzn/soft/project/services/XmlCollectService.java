@@ -9,14 +9,14 @@ import java.util.Map;
  * @author gstarqs
  */
 
-public interface XmlCollectService<T> {
+public interface XmlCollectService {
     /**
      * 81报文解析
      * @param document 81xml
      * @return 返回结果
      * @throws Exception （校验报文异常）
      */
-    Map<String,T> xmlResolve ( Document document ) throws  Exception;
+    Map<String,?> xmlResolve ( Document document ) throws  Exception;
 
     /**
      * 82报文组成

@@ -3,9 +3,14 @@ package com.lhzn.soft.utils;
 
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
+import org.dom4j.io.OutputFormat;
+import org.dom4j.io.XMLWriter;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.XML;
+
+import java.io.IOException;
+import java.io.StringWriter;
 
 import static org.dom4j.DocumentHelper.parseText;
 
@@ -40,4 +45,23 @@ public class XmlUtil {
         return js.toString ();
     }
 
+    /**
+     *  将xml转化成字符串
+     * @param doc xml
+     * @return 结果
+     */
+    public static String Output(Document doc) {
+        OutputFormat oFormat = OutputFormat.createPrettyPrint();
+        oFormat.setEncoding("UTF-8");
+        StringWriter sWriter = new StringWriter();
+        XMLWriter xWriter = new XMLWriter(sWriter, oFormat);
+        try {
+            xWriter.write(doc);
+            xWriter.flush();
+            xWriter.close();
+        } catch (IOException e) {
+            System.err.println("转换xml异常！");
+        }
+       return  sWriter.toString();
+    }
 }

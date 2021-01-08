@@ -16,7 +16,6 @@ public interface ForwardService {
      * @return 结果
      */
     String callServices ( String json, String wsdl, String namespace, String method );
-
     /**
      * 采集端服务调用
      *
