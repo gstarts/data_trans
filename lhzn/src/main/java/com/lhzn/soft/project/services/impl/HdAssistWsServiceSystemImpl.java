@@ -21,6 +21,7 @@ import java.util.Map;
 
 /**
  * 华东辅助平台实现
+ *
  * @author qishuai
  */
 
@@ -38,6 +39,7 @@ public class HdAssistWsServiceSystemImpl implements BusinessSystemService {
     private XmlContentMapper xmlContentMapper;
     @Resource
     private ForwardService forwardService;
+    private final static String ERR_CODE = "404";
 
     @Override
     public String createInteractiveXml(Map<String, ?> map) {
@@ -101,6 +103,13 @@ public class HdAssistWsServiceSystemImpl implements BusinessSystemService {
 
         JSONObject json = JSONObject.parseObject(XmlUtil.xmlToJson(resXml));
         GatherdataLog gl = new GatherdataLog();
+        String code = String.valueOf(json.get("code")) ;
+        if (ERR_CODE.equals(code)) {
+            gl.setCheckResult("N");
+            gl.setOpHint("华东辅助平台业务系统调用超时");
+            glMapper.updateGatherdataLog(gl);
+            return true;
+        }
         JSONObject root = (JSONObject) json.get("MESSAGE_LIST_1.2");
         if (StringUtils.isNull(root)) {
             return true;

@@ -41,7 +41,7 @@ public class ForwardServiceImpl implements ForwardService {
         } catch (Exception e) {
             e.printStackTrace();
             // 服务器请求超时
-            str.append("404");
+            str.append("{").append("code").append(":").append("404").append("}");
         }
         return str.toString();
 
@@ -70,7 +70,7 @@ public class ForwardServiceImpl implements ForwardService {
             e.printStackTrace();
             logger.error(e.toString());
             // 服务器请求超时
-            str.append("404");
+            str.append("{").append("code").append(":").append("404").append("}");
         }
         logger.info("调用服务返回值信息" + str.toString());
         return str.toString();

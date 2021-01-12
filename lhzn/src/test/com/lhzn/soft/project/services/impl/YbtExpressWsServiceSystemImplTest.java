@@ -32,9 +32,9 @@ public class YbtExpressWsServiceSystemImplTest {
                "<GATHER_INFO>\n" +
                "  <I_E_FLAG>I</I_E_FLAG>\n" +
                "  <AREA_ID>CNCEK070017</AREA_ID>\n" +
-               "  <CHNL_NO>CNCEK070017WI03</CHNL_NO>\n" +
+               "  <CHNL_NO>22222</CHNL_NO>\n" +
                "  <GETHER_MODE>A</GETHER_MODE>\n" +
-               "  <SESSION_ID>20200601102928</SESSION_ID>\n" +
+               "  <SESSION_ID>21312311114765</SESSION_ID>\n" +
                "  <IC_INFO>\n" +
                "    <IC_ID></IC_ID>\n" +
                "    <IC_NO></IC_NO>\n" +
@@ -91,10 +91,6 @@ public class YbtExpressWsServiceSystemImplTest {
         Document document = XmlUtil.stringToXml(data);
         // 报文解析
         Map<String, ?> map = xmlCollectService.xmlResolve(document);
-        YbtExpressWsServiceSystemImpl impl = new YbtExpressWsServiceSystemImpl();
-        String interactiveXml = impl.createInteractiveXml(map);
-        System.out.println(interactiveXml);
-
-        service.genXml(interactiveXml,"{'sda':'dasdad'}",map);
+       service.handle(map,"192.168.11.101");
     }
 }

@@ -16,7 +16,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -50,35 +49,42 @@ public class BusinessServiceImpl implements BusinessService {
 
     @Resource(name  = "COLLECT")
     private BusinessSystemService systemService;
+    @Resource(name  = "HDFZ")
+    private BusinessSystemService hdfzSystemService;
+    @Resource(name  = "ZS")
+    private BusinessSystemService zsSystemService;
+    @Resource(name  = "YBTKJ")
+    private BusinessSystemService ybtSystemService;
 
+    @Resource
+    private StationManagementMapper stationManagement;
     @Async(value = "threadPoolTaskExecutor")
     @Override
     public void handle(Map map, String ipAddress) {
         GatherdataLog gl = (GatherdataLog) map.get("gl");
         // 更新数据库 使用的key
         String sessionId = gl.getSessionId();
-        // 通道号
-        String chnlNo = gl.getChnlNo();
         // 通过通道号获取对接的系统列表
-        List<String> dockingList = new ArrayList<>();
+        String dockingSystem = stationManagement.getDockingSystem(gl.getChnlNo());
+        List<String> dockingList = StringUtils.str2List(dockingSystem, ",", true, true);
         for (String docking : dockingList) {
             switch (docking) {
                 case "ZS":
-                    BusinessContext context = new BusinessContext(new ZsWsServiceSystemImpl());
+                    BusinessContext context = new BusinessContext(zsSystemService);
                     boolean zsIsNot = context.businessProcessing(map);
                     if (zsIsNot) {
                         continue;
                     }
                     break;
                 case "HDFZ":
-                    BusinessContext hdContext = new BusinessContext(new HdAssistWsServiceSystemImpl());
+                    BusinessContext hdContext = new BusinessContext(hdfzSystemService);
                     boolean hdIsNot = hdContext.businessProcessing(map);
                     if (hdIsNot) {
                         continue;
                     }
                     break;
                 case "YBTKJ":
-                    BusinessContext ybtContext = new BusinessContext(new YbtExpressWsServiceSystemImpl());
+                    BusinessContext ybtContext = new BusinessContext(ybtSystemService);
                     boolean ybtIsNot = ybtContext.businessProcessing(map);
                     if (ybtIsNot) {
                         continue;

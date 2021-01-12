@@ -20,6 +20,7 @@ import java.util.Map;
 
 /**
  * 金二保税业务平台实现
+ *
  * @author qishuai
  */
 @Service("ZS")
@@ -36,6 +37,8 @@ public class ZsWsServiceSystemImpl implements BusinessSystemService {
     private GatherdataLogMapper glMapper;
     @Resource
     private ForwardService forwardService;
+    private final static String ERR_CODE = "404";
+
     @Override
     public String createInteractiveXml(Map<String, ?> map) {
         SendJson sj = new SendJson();
@@ -70,13 +73,21 @@ public class ZsWsServiceSystemImpl implements BusinessSystemService {
 
     @Override
     public String callServices(String reqXml) {
-        return forwardService.callServices(reqXml,wsdl,namespace,methodName);
+        return forwardService.callServices(reqXml, wsdl, namespace, methodName);
     }
 
     @Override
     public boolean isNotRelease(String resXml, String sessionId) {
         JSONObject json = JSONObject.parseObject(resXml);
         GatherdataLog gl = new GatherdataLog();
+        gl.setSessionId(sessionId);
+        String code = String.valueOf(json.get("code")) ;
+        if (ERR_CODE.equals(code)) {
+            gl.setCheckResult("N");
+            gl.setOpHint("金二业务系统调用超时");
+            glMapper.updateGatherdataLog(gl);
+            return true;
+        }
         String hintInfo = (String) json.get("hintInfo");
         String checkResult = (String) json.get("checkResult");
         switch (checkResult) {
@@ -86,11 +97,13 @@ public class ZsWsServiceSystemImpl implements BusinessSystemService {
             case "2":
                 gl.setCheckResult("M");
                 break;
-            default:
+            case "1":
                 gl.setCheckResult("Y");
+                break;
+            default:
+                break;
         }
         gl.setOpHint(hintInfo);
-        gl.setSessionId(sessionId);
         glMapper.updateGatherdataLog(gl);
         return "N".equals(gl.getCheckResult());
     }

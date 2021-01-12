@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lhzn.soft.project.mapper.StationManagementMapper">
+
+    <resultMap type="StationManagement" id="StationManagementResult">
+        <result property="id"    column="id"    />
+        <result property="supvLoctCode"    column="supv_loct_code"    />
+        <result property="chnlNo"    column="chnl_no"    />
+        <result property="status"    column="status"    />
+        <result property="docking"    column="docking"    />
+        <result property="stationName"    column="station_name"    />
+        <result property="chnlName"    column="chnl_name"    />
+        <result property="expand"    column="expand"    />
+        <result property="expand2"    column="expand2"    />
+        <result property="revision"    column="revision"    />
+        <result property="createBy"    column="create_by"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="updateBy"    column="update_by"    />
+        <result property="updateTime"    column="update_time"    />
+    </resultMap>
+
+    <sql id="selectStationManagementVo">
+        select id, supv_loct_code, chnl_no, status, docking, station_name, chnl_name, expand, expand2, revision, create_by, create_time, update_by, update_time from s_station_management
+    </sql>
+
+    <select id="selectStationManagementList" parameterType="StationManagement" resultMap="StationManagementResult">
+        <include refid="selectStationManagementVo"/>
+        <where>
+            <if test="supvLoctCode != null  and supvLoctCode != ''"> and supv_loct_code = #{supvLoctCode}</if>
+            <if test="chnlNo != null  and chnlNo != ''"> and chnl_no = #{chnlNo}</if>
+            <if test="status != null  and status != ''"> and status = #{status}</if>
+            <if test="docking != null  and docking != ''"> and docking = #{docking}</if>
+            <if test="stationName != null  and stationName != ''"> and station_name like concat('%', #{stationName}, '%')</if>
+            <if test="chnlName != null  and chnlName != ''"> and chnl_name like concat('%', #{chnlName}, '%')</if>
+            <if test="expand != null  and expand != ''"> and expand = #{expand}</if>
+            <if test="expand2 != null  and expand2 != ''"> and expand2 = #{expand2}</if>
+            <if test="revision != null "> and revision = #{revision}</if>
+        </where>
+    </select>
+
+    <select id="selectStationManagementById" parameterType="Long" resultMap="StationManagementResult">
+        <include refid="selectStationManagementVo"/>
+        where id = #{id}
+    </select>
+
+    <insert id="insertStationManagement" parameterType="StationManagement" useGeneratedKeys="true" keyProperty="id">
+        insert into s_station_management
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="supvLoctCode != null">supv_loct_code,</if>
+            <if test="chnlNo != null">chnl_no,</if>
+            <if test="status != null">status,</if>
+            <if test="docking != null">docking,</if>
+            <if test="stationName != null">station_name,</if>
+            <if test="chnlName != null">chnl_name,</if>
+            <if test="expand != null">expand,</if>
+            <if test="expand2 != null">expand2,</if>
+            <if test="revision != null">revision,</if>
+            <if test="createBy != null">create_by,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="updateBy != null">update_by,</if>
+            <if test="updateTime != null">update_time,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="supvLoctCode != null">#{supvLoctCode},</if>
+            <if test="chnlNo != null">#{chnlNo},</if>
+            <if test="status != null">#{status},</if>
+            <if test="docking != null">#{docking},</if>
+            <if test="stationName != null">#{stationName},</if>
+            <if test="chnlName != null">#{chnlName},</if>
+            <if test="expand != null">#{expand},</if>
+            <if test="expand2 != null">#{expand2},</if>
+            <if test="revision != null">#{revision},</if>
+            <if test="createBy != null">#{createBy},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="updateBy != null">#{updateBy},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+        </trim>
+    </insert>
+
+    <update id="updateStationManagement" parameterType="StationManagement">
+        update s_station_management
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="supvLoctCode != null">supv_loct_code = #{supvLoctCode},</if>
+            <if test="chnlNo != null">chnl_no = #{chnlNo},</if>
+            <if test="status != null">status = #{status},</if>
+            <if test="docking != null">docking = #{docking},</if>
+            <if test="stationName != null">station_name = #{stationName},</if>
+            <if test="chnlName != null">chnl_name = #{chnlName},</if>
+            <if test="expand != null">expand = #{expand},</if>
+            <if test="expand2 != null">expand2 = #{expand2},</if>
+            <if test="revision != null">revision = #{revision},</if>
+            <if test="createBy != null">create_by = #{createBy},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="updateBy != null">update_by = #{updateBy},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteStationManagementById" parameterType="Long">
+        delete from s_station_management where id = #{id}
+    </delete>
+
+    <delete id="deleteStationManagementByIds" parameterType="String">
+        delete from s_station_management where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+    <select id="distinctList" resultMap="StationManagementResult">
+        select distinct supv_loct_code,station_name from s_station_management
+    </select>
+    <select id="getDockingSystem" resultType="java.lang.String">
+        select docking from s_station_management where   chnl_no =#{chnlNo}
+    </select>
+</mapper>

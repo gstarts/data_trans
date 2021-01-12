@@ -39,7 +39,7 @@ public class YbtExpressWsServiceSystemImpl implements BusinessSystemService {
     private GatherdataLogMapper glMapper;
     @Resource
     private ForwardService forwardService;
-
+    private final static String ERR_CODE = "404";
     @Override
     public String createInteractiveXml(Map<String, ?> map) {
         Document doc = DocumentHelper.createDocument();
@@ -119,6 +119,13 @@ public class YbtExpressWsServiceSystemImpl implements BusinessSystemService {
     public boolean isNotRelease(String resXml, String sessionId) {
         JSONObject json = JSONObject.parseObject(XmlUtil.xmlToJson(resXml));
         GatherdataLog gl = new GatherdataLog();
+        String code = String.valueOf(json.get("code")) ;
+        if (ERR_CODE.equals(code)) {
+            gl.setCheckResult("N");
+            gl.setOpHint("易博特快件务系统调用超时");
+            glMapper.updateGatherdataLog(gl);
+            return true;
+        }
         JSONObject root = (JSONObject) json.get("GATHER_FEEDBACK");
         if (StringUtils.isNull(root)) {
             return true;
