@@ -67,34 +67,29 @@ public class BusinessServiceImpl implements BusinessService {
         // 通过通道号获取对接的系统列表
         String dockingSystem = stationManagement.getDockingSystem(gl.getChnlNo());
         List<String> dockingList = StringUtils.str2List(dockingSystem, ",", true, true);
+        boolean isNotRelease;
         for (String docking : dockingList) {
             switch (docking) {
                 case "ZS":
                     BusinessContext context = new BusinessContext(zsSystemService);
-                    boolean zsIsNot = context.businessProcessing(map);
-                    if (zsIsNot) {
-                        continue;
-                    }
+                     isNotRelease = context.businessProcessing(map);
                     break;
                 case "HDFZ":
                     BusinessContext hdContext = new BusinessContext(hdfzSystemService);
-                    boolean hdIsNot = hdContext.businessProcessing(map);
-                    if (hdIsNot) {
-                        continue;
-                    }
+                     isNotRelease = hdContext.businessProcessing(map);
                     break;
                 case "YBTKJ":
                     BusinessContext ybtContext = new BusinessContext(ybtSystemService);
-                    boolean ybtIsNot = ybtContext.businessProcessing(map);
-                    if (ybtIsNot) {
-                        continue;
-                    }
+                     isNotRelease = ybtContext.businessProcessing(map);
                     break;
                 default:
                     continue;
             }
+            if (isNotRelease) {
+                break;
+            }
         }
-        BusinessContext collectContext = new BusinessContext(new CollectWsServiceSystemImpl());
+        BusinessContext collectContext = new BusinessContext(systemService);
         collectContext.collectBusinessProcessing(sessionId, ipAddress);
     }
 

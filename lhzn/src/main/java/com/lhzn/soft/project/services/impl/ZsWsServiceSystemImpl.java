@@ -77,7 +77,7 @@ public class ZsWsServiceSystemImpl implements BusinessSystemService {
     }
 
     @Override
-    public boolean isNotRelease(String resXml, String sessionId) {
+    public boolean isRelease(String resXml, String sessionId) {
         JSONObject json = JSONObject.parseObject(resXml);
         GatherdataLog gl = new GatherdataLog();
         gl.setSessionId(sessionId);
@@ -105,7 +105,7 @@ public class ZsWsServiceSystemImpl implements BusinessSystemService {
         }
         gl.setOpHint(hintInfo);
         glMapper.updateGatherdataLog(gl);
-        return "N".equals(gl.getCheckResult());
+        return "Y".equals(gl.getCheckResult());
     }
 
     @Override

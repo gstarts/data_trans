@@ -99,7 +99,7 @@ public class HdAssistWsServiceSystemImpl implements BusinessSystemService {
     }
 
     @Override
-    public boolean isNotRelease(String resXml, String sessionId) {
+    public boolean isRelease(String resXml, String sessionId) {
 
         JSONObject json = JSONObject.parseObject(XmlUtil.xmlToJson(resXml));
         GatherdataLog gl = new GatherdataLog();
@@ -121,7 +121,7 @@ public class HdAssistWsServiceSystemImpl implements BusinessSystemService {
         gl.setOpHint(opHint);
         gl.setSessionId(sessionId);
         glMapper.updateGatherdataLog(gl);
-        return "N".equals(checkResult);
+        return "Y".equals(checkResult);
     }
 
     @Override

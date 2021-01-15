@@ -29,7 +29,7 @@ public class BusinessContext {
         String interactiveXml = systemService.createInteractiveXml(map);
         String resXml = systemService.callServices(interactiveXml);
         systemService.saveInteractiveXml(interactiveXml, resXml, sessionId);
-        return systemService.isNotRelease(resXml, sessionId);
+        return systemService.isRelease(resXml, sessionId);
     }
 
 
@@ -42,6 +42,7 @@ public class BusinessContext {
     public void collectBusinessProcessing(String sessionId, String ip) {
         systemService.setIpAddress(ip);
         String interactiveXml = systemService.createInteractiveXml(systemService.createMap(sessionId));
+        System.out.println(interactiveXml);
         String resXml = systemService.callServices(interactiveXml);
         systemService.saveInteractiveXml(interactiveXml, resXml, sessionId);
     }

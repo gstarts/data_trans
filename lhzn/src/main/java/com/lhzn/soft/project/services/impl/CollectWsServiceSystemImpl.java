@@ -99,7 +99,7 @@ public class CollectWsServiceSystemImpl implements BusinessSystemService {
     }
 
     @Override
-    public boolean isNotRelease(String resXml, String sessionId) {
+    public boolean isRelease(String resXml, String sessionId) {
         return false;
     }
 

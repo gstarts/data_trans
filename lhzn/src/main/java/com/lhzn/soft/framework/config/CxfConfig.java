@@ -38,6 +38,8 @@ public class CxfConfig {
     public ServletRegistrationBean disServlet() {
 
         // 此处配置的是webservice接口的访问地址，类似 http://127.0.0.1:8001/emr
+        CXFServlet cxfServlet = new CXFServlet();
+
         return new ServletRegistrationBean(new CXFServlet(), "/webServices/*");
     }
 

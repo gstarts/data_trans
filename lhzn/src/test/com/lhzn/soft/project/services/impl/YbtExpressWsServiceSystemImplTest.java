@@ -88,6 +88,9 @@ public class YbtExpressWsServiceSystemImplTest {
                "    <CONFIDENCE_RATIO></CONFIDENCE_RATIO>\n" +
                "  </VE_LICENSE_RECOGNITION>\n" +
                "</GATHER_INFO>";
+
+        String s = XmlUtil.xmlToJson(data);
+        System.out.println(s);
         Document document = XmlUtil.stringToXml(data);
         // 报文解析
         Map<String, ?> map = xmlCollectService.xmlResolve(document);

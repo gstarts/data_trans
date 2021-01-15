@@ -116,7 +116,7 @@ public class YbtExpressWsServiceSystemImpl implements BusinessSystemService {
     }
 
     @Override
-    public boolean isNotRelease(String resXml, String sessionId) {
+    public boolean isRelease(String resXml, String sessionId) {
         JSONObject json = JSONObject.parseObject(XmlUtil.xmlToJson(resXml));
         GatherdataLog gl = new GatherdataLog();
         String code = String.valueOf(json.get("code")) ;
@@ -140,7 +140,7 @@ public class YbtExpressWsServiceSystemImpl implements BusinessSystemService {
         String session_id = (String) root.get("SESSION_ID");
         gl.setSessionId(session_id);
         glMapper.updateGatherdataLog(gl);
-        return "N".equals(checkResult);
+        return "Y".equals(checkResult);
     }
 
 

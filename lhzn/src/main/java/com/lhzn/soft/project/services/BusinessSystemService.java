@@ -22,12 +22,12 @@ public interface BusinessSystemService {
     String callServices (String reqXml );
 
     /**
-     * 是否不放行
+     * 是否放行
      * @param resXml 接收回执
      * @param sessionId 唯一id
      * @return 结果
      */
-    boolean isNotRelease(String resXml,String sessionId);
+    boolean isRelease(String resXml, String sessionId);
 
     /**
      * 保存交互报文

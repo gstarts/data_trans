@@ -43,6 +43,7 @@ public class ForwardServiceImpl implements ForwardService {
             // 服务器请求超时
             str.append("{").append("code").append(":").append("404").append("}");
         }
+
         return str.toString();
 
 
